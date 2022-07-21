@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated SVG Button</title>
+    <style>
+        :root {
+            --dark-color: #635bff;
+            --light-color: #80e9ff;
+        }
+
+        svg {
+            cursor: pointer;
+        }
+
+        #darkGroup {
+            fill: var(--dark-color);
+        }
+
+        #lightGroup {
+            fill: var(--light-color);
+        }
+
+        #dark1,
+        #light1,
+        #dark2 {
+            transition: all 1s ease;
+        }
+        #dark2 {
+            transform: translateX(-100%);
+        }
+
+        svg:hover #light1 {
+            transform: translateX(20%);
+        }
+
+        svg:hover #dark1 {
+            transform: translateX(40%);
+            opacity: 0;
+        }
+        svg:hover #dark2 {
+            transform: translateX(0%);
+        }
+    </style>
+</head>
+<body>
+
+    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="triangles" clip-path="url(#clip0_1_3)">
+        <g id="lightGroup">
+        <path id="light1" opacity="0.7" d="M51.0813 49.9999L6.90202 75.2389L6.76085 25.0096L51.0813 49.9999Z"/>
+        </g>
+        <g id="darkGroup">
+        <path id="dark2" opacity="0.7" d="M51.0813 49.9999L6.90202 75.2389L6.76085 25.0096L51.0813 49.9999Z" />
+        <path id="dark1" opacity="0.7" d="M70.0814 49.9999L25.9021 75.2389L25.761 25.0096L70.0814 49.9999Z"/>
+        </g>
+        </g>
+        <defs>
+        <clipPath id="clip0_1_3">
+        <rect width="120" height="100" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>
+        
+    <script>
+        const svg = document.getElementById('triangles');
+
+        svg.onclick = (e) => {
+
+            const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown'];
+
+            const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+            document.documentElement.style.cssText = `
+                --dark-color: ${randomColor()};
+                --light-color: ${randomColor()};
+            `;
+        }
+
+    </script>
+</body>
+</html>
